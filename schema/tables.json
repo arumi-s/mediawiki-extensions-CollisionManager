@@ -1,0 +1,61 @@
+[
+	{
+		"name": "collision_title",
+		"columns": [
+			{
+				"name": "ct_page",
+				"comment": "Key to page_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "ct_namespace",
+				"comment": "Namespace of the page",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "ct_title",
+				"comment": "Normalized title with namespace prefix",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "ct_rules",
+				"comment": "Collision rules",
+				"type": "text",
+				"options": { "notnull": true, "length": 65530, "default": "" }
+			},
+			{
+				"name": "ct_state",
+				"comment": "Collision statement",
+				"type": "text",
+				"options": { "notnull": true, "length": 65530, "default": "" }
+			},
+			{
+				"name": "ct_search",
+				"comment": "Normalized search key with namespace prefix",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "ct_page",
+				"columns": ["ct_page"],
+				"unique": true
+			},
+			{
+				"name": "ct_namespace_title",
+				"columns": ["ct_namespace", "ct_title"],
+				"unique": false
+			},
+			{
+				"name": "ct_namespace_search",
+				"columns": ["ct_namespace", "ct_search"],
+				"unique": false
+			}
+		],
+		"pk": ["ct_page"]
+	}
+]

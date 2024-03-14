@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": ["Sakura Arumi"]
+	},
+	"collisionmanager-desc": "Provides a tool for managing page name collision and disambiguation",
+	"disambig": "Disambig",
+	"collisionmanager": "Manage Collision",
+	"disambig-main": "Main Article",
+	"disambig-nodesc": "No description",
+	"disambig-title": "$1（Disambig）",
+	"disambig-start": "The title of the page you want to visit contains or involves the following meanings, please select:",
+	"disambig-end": "<b>This is a disambiguation page</b> that lists pages that have the same or similar titles, or are referred to by the same vocabulary, but have different content.<br />You can follow the instructions to access the pages you need.",
+	"collision-manager-disambig": "<b>This page refers to: </b>$1. For other uses, see <b>$2</b>.",
+	"collision-manager-redirect": "\"<b>$1</b>\" redirects here. For other uses, see <b>$2</b>.",
+	"collision-manager-move": "Should be moveed to $1",
+	"collision-manager-delete": "Should be deleted",
+	"collision-manager-unsolved": "Insufficient rules, conflict unsolvable",
+	"collision-manager-info-title-label": "Normalized Title",
+	"collision-manager-info-rules-label": "Collision Rules",
+	"collision-manager-info-state-label": "Collision Statement"
+}

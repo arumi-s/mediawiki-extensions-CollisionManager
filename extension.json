@@ -1,0 +1,84 @@
+{
+	"name": "CollisionManager",
+	"version": "1.3.0",
+	"author": "Arumi",
+	"url": "https://thwiki.cc/%E5%B8%AE%E5%8A%A9:%E7%AE%A1%E7%90%86%E7%A2%B0%E6%92%9E",
+	"descriptionmsg": "collisionmanager-desc",
+	"license-name": "MIT",
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.39.0",
+		"extensions": {
+			"CustomRedirect": ">= 1.0.0",
+			"TextTransform": ">= 1.0.0"
+		}
+	},
+	"config": {
+		"CollisionManagerRulePriorities": {
+			"description": "Defines an array for rule priorities",
+			"value": []
+		},
+		"CollisionManagerDisambigIcon": {
+			"description": "Defines an url pointing to disambig icon",
+			"value": ""
+		}
+	},
+	"APIPropModules": {
+		"pagedesc": {
+			"class": "MediaWiki\\Extension\\CollisionManager\\Apis\\ApiQueryPageDesc",
+			"services": ["CollisionManager.CollisionStore"]
+		}
+	},
+	"SpecialPages": {
+		"Disambig": {
+			"class": "MediaWiki\\Extension\\CollisionManager\\Specials\\SpecialDisambig",
+			"services": ["CollisionManager.DisambigBuilder"]
+		},
+		"CollisionManager": {
+			"class": "MediaWiki\\Extension\\CollisionManager\\Specials\\SpecialCollisionManager",
+			"services": ["CollisionManager.CollisionStore", "RedirectLookup"]
+		},
+		"PagesWithSameName": "MediaWiki\\Extension\\CollisionManager\\Specials\\SpecialPagesWithSameName"
+	},
+	"MessagesDirs": {
+		"CollisionManager": ["i18n"]
+	},
+	"ExtensionMessagesFiles": {
+		"CollisionManagerMagic": "CollisionManager.i18n.magic.php",
+		"CollisionManagerAlias": "CollisionManager.i18n.alias.php"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\CollisionManager\\": "includes/"
+	},
+	"AutoloadClasses": {
+		"MediaWiki\\Extension\\CollisionManager\\Maintenance\\PopulateCollisionTitleTable": "maintenance/populateCollisionTitleTable.php",
+		"MediaWiki\\Extension\\CollisionManager\\Maintenance\\CheckCollisionTitleTable": "maintenance/CheckCollisionTitleTable.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "ParserHookHandler",
+		"OutputPageParserOutput": "HookHandler",
+		"ImageOpenShowImageInlineBefore": "HookHandler",
+		"LinksUpdate": "HookHandler",
+		"PageDeleteComplete": "HookHandler",
+		"InfoAction": "HookHandler",
+		"ApiOpenSearchSuggest": "HookHandler",
+		"PrefixSearchBackend": "HookHandler",
+		"SearchGetNearMatch": "HookHandler",
+		"GetCustomRedirect": "HookHandler",
+		"LoadExtensionSchemaUpdates": "DatabaseHookHandler"
+	},
+	"HookHandlers": {
+		"HookHandler": {
+			"class": "MediaWiki\\Extension\\CollisionManager\\Hooks",
+			"services": ["MainConfig", "CollisionManager.CollisionStore", "DisambiguatorLookup", "CollisionManager.DisambigBuilder"]
+		},
+		"ParserHookHandler": {
+			"class": "MediaWiki\\Extension\\CollisionManager\\ParserHooks"
+		},
+		"DatabaseHookHandler": {
+			"class": "MediaWiki\\Extension\\CollisionManager\\DatabaseHooks"
+		}
+	},
+	"ServiceWiringFiles": ["includes/ServiceWiring.php"],
+	"manifest_version": 2
+}

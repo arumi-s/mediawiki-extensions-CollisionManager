@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": ["Sakura Arumi"]
+	},
+	"collisionmanager-desc": "提供頁面名稱碰撞檢測及管理工具",
+	"disambig": "消歧義",
+	"collisionmanager": "管理碰撞",
+	"disambig-main": "主條目",
+	"disambig-nodesc": "無簡介",
+	"disambig-title": "$1（消歧義）",
+	"disambig-start": "您要訪問的頁面名稱包含或涉及如下幾個含義，請選擇：",
+	"disambig-end": "<b>這是一個消歧義頁</b>，列出了有相同或相近的標題，或會被以相同的詞彙稱呼，但內容不同的詞條。<br />可以根據您的需求，按照說明訪問您真正需要訪問的詞條。",
+	"collision-manager-disambig": "<b>本文介紹的是：</b>$1。<b>關於</b>其他含義，詳見「<b>$2</b>」。",
+	"collision-manager-redirect": "「<b>$1</b>」重定向至此。關於與此名稱相似的其他頁面，詳見「<b>$2</b>」。",
+	"collision-manager-move": "應移動到$1",
+	"collision-manager-delete": "應刪除",
+	"collision-manager-unsolved": "規則不足，無法解決碰撞",
+	"collision-manager-info-title-label": "標準化標題",
+	"collision-manager-info-rules-label": "碰撞規則",
+	"collision-manager-info-state-label": "碰撞說明"
+}
