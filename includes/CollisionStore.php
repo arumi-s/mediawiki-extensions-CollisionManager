@@ -289,7 +289,7 @@ class CollisionStore
 
 		$res = $this->getAvailableTails($matchedRules);
 
-		if (empty($res[0])) {
+		if (empty($res[0]) && isset($matchedTitles[0])) {
 			return $matchedTitles[0];
 		}
 
