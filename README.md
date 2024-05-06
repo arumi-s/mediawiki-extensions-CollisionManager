@@ -1,4 +1,4 @@
-# CollisionManager v1.3.1
+# CollisionManager v1.3.2
 
 This MediaWiki extension provides .
 
