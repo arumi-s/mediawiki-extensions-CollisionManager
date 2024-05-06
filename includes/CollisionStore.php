@@ -265,7 +265,9 @@ class CollisionStore
 				$rule->setTail($rule->hasRules() ? $rule->getRulesArray()[0] : '');
 				return $rule->join();
 			} else {
-				$rule->setTail('');
+				if (!$rule->hasRules()) {
+					$rule->setTail('');
+				}
 				return $rule->join();
 			}
 		}
@@ -289,7 +291,7 @@ class CollisionStore
 
 		$res = $this->getAvailableTails($matchedRules);
 
-		if (empty($res[0])) {
+		if (empty($res[0]) && isset($matchedTitles[0])) {
 			return $matchedTitles[0];
 		}
 
