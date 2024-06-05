@@ -99,10 +99,15 @@ class DisambigBuilder
 
 		$list = '';
 		$rows = $this->collisionStore->match($namespace, $title->getText());
+		/** @var int[] */
+		$directRelates = [];
 
 		if (!empty($relate)) {
 			foreach ($relate as $relateHead => $relateState) {
 				$relateTitle = Title::newFromText($relateHead, $namespace);
+				if ($relateTitle !== null && !$relateTitle->isSamePageAs($title)) {
+					$directRelates[] = $relateTitle->getArticleID();
+				}
 				if ($relateState === '') {
 					if ($relateTitle !== null) {
 						$rows += $this->collisionStore->match($relateTitle->getNamespace(), $relateTitle->getText());
@@ -118,9 +123,10 @@ class DisambigBuilder
 		}
 
 		foreach ($rows as $key => $row) {
-			if (!$this->collisionStore->isValidTarget($row->getTitle())) {
-				unset($rows[$key]);
+			if ($this->collisionStore->isValidTarget($row->getTitle()) || in_array($row->getPage(), $directRelates)) {
+				continue;
 			}
+			unset($rows[$key]);
 		}
 
 		if (empty($rows)) {
