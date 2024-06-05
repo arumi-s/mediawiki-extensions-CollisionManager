@@ -1,4 +1,4 @@
-# CollisionManager v1.3.2
+# CollisionManager v1.3.3
 
 This MediaWiki extension provides .
 
@@ -7,3 +7,4 @@ This MediaWiki extension provides .
 - `{{#colrule:}}`
 - `{{#colfind:}}`
 - `{{#colrelate:}}`
+- `{{#colgetstate:}}`

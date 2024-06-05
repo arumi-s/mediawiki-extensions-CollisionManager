@@ -19,6 +19,7 @@ class ParserHooks implements \MediaWiki\Hook\ParserFirstCallInitHook
 		$parser->setFunctionHook('colrule', [ParserHooks::class, 'colrule']);
 		$parser->setFunctionHook('colfind', [ParserHooks::class, 'colfind']);
 		$parser->setFunctionHook('colrelate', [ParserHooks::class, 'colrelate']);
+		$parser->setFunctionHook('colgetstate', [ParserHooks::class, 'colgetstate']);
 	}
 
 	/**
@@ -95,6 +96,27 @@ class ParserHooks implements \MediaWiki\Hook\ParserFirstCallInitHook
 		}
 
 		return '';
+	}
+
+	/**
+	 * @param Parser $parser
+	 * @param string $text
+	 * @return string
+	 */
+	public static function colgetstate($parser, $text = '')
+	{
+		$title = Title::newFromText($text);
+		if ($title === null) {
+			return '';
+		}
+
+		$collisionStore = self::getCollisionStore();
+		$rule = $collisionStore->get($title);
+		if ($rule === null) {
+			return '';
+		}
+
+		return $rule->getState();
 	}
 
 	/**
